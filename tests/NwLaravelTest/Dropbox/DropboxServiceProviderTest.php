@@ -18,7 +18,7 @@ class DropboxServiceProviderTest extends PHPUnit_Framework_TestCase
         $sp = m::mock('NwLaravel\Dropbox\DropboxServiceProvider[package]');
         $sp->shouldReceive('package')
            ->once()
-           ->with('naturalweb/nwlaravel')
+           ->with('naturalweb/nwlaravel-dropbox')
            ->andReturn(true);
            
         $sp ->boot();
@@ -35,7 +35,7 @@ class DropboxServiceProviderTest extends PHPUnit_Framework_TestCase
         $config = m::mock('Illuminate\Config\Repository');
         $config->shouldReceive('get')
                ->once()
-               ->with('nwlaravel::dropbox')
+               ->with('nwlaravel-dropbox::dropbox')
                ->andReturn(array('token' => $token, 'app' => $nameApp));
 
         //LaravelApp
