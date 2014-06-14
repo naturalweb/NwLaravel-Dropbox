@@ -1,6 +1,11 @@
 NwLaravel Dropbox
 =================
 
+[![Build Status](https://travis-ci.org/naturalweb/NwLaravel-Dropbox.svg?branch=master)](https://travis-ci.org/naturalweb/NwLaravel-Dropbox)
+[![Coverage Status](https://coveralls.io/repos/naturalweb/NwLaravel-Dropbox/badge.png?branch=master)](https://coveralls.io/r/naturalweb/NwLaravel-Dropbox?branch=master)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/naturalweb/NwLaravel-Dropbox/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/naturalweb/NwLaravel-Dropbox/?branch=master)
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/59a0cc06-dab6-42b5-b76d-2e083c47f867/mini.png)](https://insight.sensiolabs.com/projects/59a0cc06-dab6-42b5-b76d-2e083c47f867)
+
 This is a service provider for the Laravel PHP Framework, for usage client the of sdk-dropbox. [Core API](https://www.dropbox.com/developers/core/start/php)
 
 ### Requirements:
