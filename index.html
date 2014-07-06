@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <link href='https://fonts.googleapis.com/css?family=Chivo:900' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <title>Nwlaravel-dropbox by naturalweb</title>
+  </head>
+
+  <body>
+    <div id="container">
+      <div class="inner">
+
+        <header>
+          <h1>Nwlaravel-dropbox</h1>
+          <h2>This is a service provider for the Laravel PHP Framework, for usage client the of sdk-dropbox.</h2>
+        </header>
+
+        <section id="downloads" class="clearfix">
+          <a href="https://github.com/naturalweb/NwLaravel-Dropbox/zipball/master" id="download-zip" class="button"><span>Download .zip</span></a>
+          <a href="https://github.com/naturalweb/NwLaravel-Dropbox/tarball/master" id="download-tar-gz" class="button"><span>Download .tar.gz</span></a>
+          <a href="https://github.com/naturalweb/NwLaravel-Dropbox" id="view-on-github" class="button"><span>View on GitHub</span></a>
+        </section>
+
+        <hr>
+
+        <section id="main_content">
+          <h1>
+<a name="nwlaravel-dropbox" class="anchor" href="#nwlaravel-dropbox"><span class="octicon octicon-link"></span></a>NwLaravel Dropbox</h1>
+
+<p>This is a service provider for the Laravel PHP Framework, for usage client the of sdk-dropbox. <a href="https://www.dropbox.com/developers/core/start/php">Core API</a></p>
+
+<h3>
+<a name="requirements" class="anchor" href="#requirements"><span class="octicon octicon-link"></span></a>Requirements:</h3>
+
+<ul>
+<li>PHP 5.3+, <a href="http://stackoverflow.com/questions/864058/how-to-have-64-bit-integer-on-php">with 64-bit integers</a>
+</li>
+<li>PHP <a href="http://php.net/manual/en/curl.installation.php">cURL extension</a> with SSL enabled (it's usually built-in).</li>
+<li>Must not be using <a href="http://www.php.net/manual/en/mbstring.overload.php"><code>mbstring.func_overload</code></a> to overload PHP's standard string functions.</li>
+</ul><p><a href="http://dropbox.github.io/dropbox-sdk-php/api-docs/v1.1.x">SDK API docs.</a></p>
+
+<h3>
+<a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation</h3>
+
+<ul>
+<li><a href="https://packagist.org/packages/naturalweb/nwlaravel-dropbox">API on Packagist</a></li>
+<li><a href="https://github.com/naturalweb/NwLaravel-Dropbox">API on GitHub</a></li>
+</ul><p>In the <code>require</code> key of <code>composer.json</code> file add the following</p>
+
+<pre><code>"naturalweb/nwlaravel-dropbox": "~0.1"
+</code></pre>
+
+<p>Run the Composer update comand</p>
+
+<pre><code>$ composer update
+</code></pre>
+
+<p>In your <code>config/app.php</code> add <code>'NwLaravel\Dropbox\DropboxServiceProvider'</code> to the end of the <code>$providers</code> array</p>
+
+<div class="highlight highlight-php"><pre><span class="s1">'providers'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+
+    <span class="s1">'Illuminate\Foundation\Providers\ArtisanServiceProvider'</span><span class="p">,</span>
+    <span class="s1">'Illuminate\Auth\AuthServiceProvider'</span><span class="p">,</span>
+    <span class="o">...</span>
+    <span class="s1">'NwLaravel\Dropbox\DropboxServiceProvider'</span><span class="p">,</span>
+
+<span class="p">),</span>
+</pre></div>
+
+<p>At the end of <code>config/app.php</code> add <code>'Dropbox'    =&gt; 'NwLaravel\Dropbox\DropboxFacade'</code> to the <code>$aliases</code> array</p>
+
+<div class="highlight highlight-php"><pre><span class="s1">'aliases'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+
+    <span class="s1">'App'</span>        <span class="o">=&gt;</span> <span class="s1">'Illuminate\Support\Facades\App'</span><span class="p">,</span>
+    <span class="s1">'Artisan'</span>    <span class="o">=&gt;</span> <span class="s1">'Illuminate\Support\Facades\Artisan'</span><span class="p">,</span>
+    <span class="o">...</span>
+    <span class="s1">'Dropbox'</span>    <span class="o">=&gt;</span> <span class="s1">'NwLaravel\Dropbox\DropboxFacade'</span><span class="p">,</span>
+
+<span class="p">),</span>
+</pre></div>
+
+<h3>
+<a name="configuration" class="anchor" href="#configuration"><span class="octicon octicon-link"></span></a>Configuration</h3>
+
+<p>Publish config using artisan CLI.</p>
+
+<pre><code>php artisan config:publish naturalweb/nwlaravel-dropbox
+</code></pre>
+
+<p>The configuration to <code>app/config/packages/naturalweb/nwlaravel-dropbox/config/dropbox.php</code>. This file will look somewhat like:</p>
+
+<div class="highlight highlight-php"><pre><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="cm">/*</span>
+<span class="cm">|--------------------------------------------------------------------------</span>
+<span class="cm">| Configuration Dropbox</span>
+<span class="cm">|--------------------------------------------------------------------------</span>
+<span class="cm">*/</span>
+
+<span class="k">return</span> <span class="k">array</span><span class="p">(</span>
+    <span class="s1">'token'</span>  <span class="o">=&gt;</span> <span class="s1">'your-token'</span><span class="p">,</span>
+    <span class="s1">'app'</span>    <span class="o">=&gt;</span> <span class="s1">'your-app'</span><span class="p">,</span>
+<span class="p">);</span>
+</pre></div>
+
+<h3>
+<a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h3>
+
+<div class="highlight highlight-php"><pre><span class="nx">Dropbox</span><span class="o">::</span><span class="na">getAccountInfo</span><span class="p">();</span>
+</pre></div>
+        </section>
+
+        <footer>
+          Nwlaravel-dropbox is maintained by <a href="https://github.com/naturalweb">naturalweb</a><br>
+          This page was generated by <a href="http://pages.github.com">GitHub Pages</a>. Tactile theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.
+        </footer>
+
+        
+      </div>
+    </div>
+  </body>
+</html>
